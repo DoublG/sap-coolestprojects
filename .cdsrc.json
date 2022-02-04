@@ -1,0 +1,17 @@
+{
+    "[development]": {
+      "auth": {
+        "passport": {
+          "users": {
+            "admin@coolestprojects.be": {
+              "password": "initial",
+              "ID": "admin@coolestprojects.be",
+              "roles": [
+                "admin"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }

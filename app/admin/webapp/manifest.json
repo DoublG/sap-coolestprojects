@@ -1,0 +1,231 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "be.coolestprojects.admin",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/admin/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "offline": false,
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "ui5template.fiorielements.v4.lrop",
+            "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "be-coolestprojects-admin-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Admin",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.97.2",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "EventsList",
+                    "target": "EventsList"
+                },
+                {
+                    "pattern": "Events({key}):?query:",
+                    "name": "EventsObjectPage",
+                    "target": "EventsObjectPage"
+                },
+                {
+                    "pattern": "Events({key})/Questions({key2}):?query:",
+                    "name": "QuestionsObjectPage",
+                    "target": "QuestionsObjectPage"
+                },
+                {
+                    "pattern": "Events({key})/Users({key2}):?query:",
+                    "name": "UsersObjectPage",
+                    "target": "UsersObjectPage"
+                },
+                {
+                    "pattern": "Events({key})/Registrations({key2}):?query:",
+                    "name": "RegistrationsObjectPage",
+                    "target": "RegistrationsObjectPage"
+                },
+                {
+                    "pattern": "Events({key})/Tshirts({key2}):?query:",
+                    "name": "TshirtsObjectPage",
+                    "target": "TshirtsObjectPage"
+                }
+            ],
+            "targets": {
+                "EventsList": {
+                    "type": "Component",
+                    "id": "EventsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Events",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Events": {
+                                    "detail": {
+                                        "route": "EventsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "EventsObjectPage": {
+                    "type": "Component",
+                    "id": "EventsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Events",
+                            "navigation": {
+                                "Questions": {
+                                    "detail": {
+                                        "route": "QuestionsObjectPage"
+                                    }
+                                },
+                                "Tshirts": {
+                                    "detail": {
+                                        "route": "TshirtsObjectPage"
+                                    }
+                                },
+                                "Registrations": {
+                                    "detail": {
+                                        "route": "RegistrationsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "QuestionsObjectPage": {
+                    "type": "Component",
+                    "id": "QuestionsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Questions"
+                        }
+                    }
+                },
+                "TshirtsObjectPage": {
+                    "type": "Component",
+                    "id": "TshirtsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Tshirts"
+                        }
+                    }
+                },
+                "RegistrationsObjectPage": {
+                    "type": "Component",
+                    "id": "RegistrationsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Registrations"
+                        }
+                    }
+                },
+                "UsersObjectPage": {
+                    "type": "Component",
+                    "id": "UsersObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Users"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.platform.abap": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.platform.hcp": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

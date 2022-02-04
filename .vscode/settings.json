@@ -1,0 +1,17 @@
+{
+  "files.exclude": {
+    "**/.gitignore": true,
+    "**/.git": true,
+    "**/.vscode": true
+  },
+  "eslint.validate": [
+    "cds",
+    "csn",
+    "csv",
+    "json",
+    "csv",
+    "csv (semicolon)",
+    "tsv",
+    "tab"
+  ]
+}

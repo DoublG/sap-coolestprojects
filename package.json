@@ -1,0 +1,62 @@
+{
+  "name": "sap-coolestprojects",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/eslint-plugin-cds": "^2.3.0",
+    "@sap/ux-specification": "^1.96.2",
+    "passport": "^0.5.2",
+    "sqlite3": "^5.0.2"
+  },
+  "scripts": {
+    "start": "cds run",
+    "watch-admin": "cds watch --open admin/webapp/index.html#fe-lrop-v4",
+    "watch-project1": "cds watch --open project1/webapp/index.html#fe-lrop-v4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@sap/cds/recommended"
+    ],
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "sapux": [
+    "app/admin",
+    "app/project1"
+  ],
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "basic-auth"
+      }
+    }
+  }
+}

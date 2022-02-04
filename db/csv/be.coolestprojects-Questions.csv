@@ -1,0 +1,5 @@
+Event_ID;Name;Description;PositiveAnswer;NegativeAnswer;Mandatory;
+00000000-0000-0000-0000-000000000001;Agreed to Photo;Is Coderdojo allowed to take photos/videos during the event?;Yes to photo;No to photo;false;
+00000000-0000-0000-0000-000000000001;Agreed to Contact;Can Coderdojo contact you in the future?;Yes to contact;No to contact;false;
+00000000-0000-0000-0000-000000000001;Approved;Be sure to read our rules. Do you agree?;Yes;No;true;
+00000000-0000-0000-0000-000000000001;CliniMaker;Could your project qualify as a CliniMakers project? In other words: do you plan to make something for a child that is ill or has a disability and you (preferably) know this person.;Yes;No;false;
