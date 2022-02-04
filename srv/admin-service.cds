@@ -4,7 +4,6 @@ using {sap.common as sap} from '@sap/cds/common';
 
 service AdminService @(requires : 'admin') {
   entity Events        as projection on my.Events actions {
-    action syncAzureSetting();
     action openEvent();
     action closeEvent();
   };
