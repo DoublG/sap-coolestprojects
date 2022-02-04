@@ -9,7 +9,6 @@ using {
 entity Events {
     key ID                     : UUID;
         Title                  : localized String;
-        AzureStorageContainer  : String;
         MaxFileSize            : Integer;
         MinAge                 : Integer;
         MaxAge                 : Integer;

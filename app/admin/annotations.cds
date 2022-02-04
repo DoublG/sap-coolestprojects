@@ -19,9 +19,7 @@ annotate service.Users with @(
 annotate service.Tshirts with @(
     UI.PresentationVariant : {
         GroupBy        : [Grp],
-        Visualizations : [
-            '@UI.LineItem',
-        ]
+        Visualizations : ['@UI.LineItem', ]
     },
     UI.LineItem            : [
         {
@@ -46,12 +44,12 @@ annotate service.Tshirts with @(
 );
 
 annotate service.Registrations with @(
-    UI.LineItem   : [{
+    UI.LineItem       : [{
         $Type : 'UI.DataField',
         Value : FirstName,
         Label : '{@i18n>@Name}',
     }],
-    UI.HeaderInfo : {
+    UI.HeaderInfo     : {
         TypeName       : 'Registration',
         TypeNamePlural : 'Registrations',
         Title          : {
@@ -59,6 +57,18 @@ annotate service.Registrations with @(
             Value : FirstName
         },
     },
+    UI.Identification : [
+        {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Create User',
+            Action : 'AdminService.createUser',
+        },
+        {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Resend Mail',
+            Action : 'AdminService.resendMail',
+        }
+    ]
 );
 
 annotate service.Questions with @(
@@ -209,11 +219,6 @@ annotate service.Events with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'AzureStorageContainer',
-                Value : AzureStorageContainer,
-            },
-            {
-                $Type : 'UI.DataField',
                 Label : 'MaxFileSize',
                 Value : MaxFileSize,
             },
@@ -291,11 +296,6 @@ annotate service.Events with @(
         Target : '@UI.FieldGroup#Header'
     }],
     UI.Identification     : [
-        {
-            $Type  : 'UI.DataFieldForAction',
-            Label  : 'Sync Azure Settings',
-            Action : 'AdminService.syncAzureSetting',
-        },
         {
             $Type  : 'UI.DataFieldForAction',
             Label  : 'Open Event',

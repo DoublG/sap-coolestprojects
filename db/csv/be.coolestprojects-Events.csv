@@ -1,3 +1,3 @@
-ID;Title;BeginDate;EndDate;RegistrationOpenDate;RegistrationClosedDate;ProjectClosedDate;OfficialStartDate;AzureStorageContainer;MaxFileSize;MinAge;MaxAge;MinGuardianAge;MaxRegistration;MaxVoucher;
-00000000-0000-0000-0000-000000000001;Coolest Projects 2021;2021-04-25;2021-09-25;2021-05-25;2021-06-25;2021-07-25;2021-08-25;Test Container;100;7;18;16;48;3;
-00000000-0000-0000-0000-000000000002;Event 02;2020-01-01;2020-01-01;2020-01-01;2020-01-01;2020-01-01;2021-08-25;Test Container;100;7;18;16;48;3;
+ID;Title;BeginDate;EndDate;RegistrationOpenDate;RegistrationClosedDate;ProjectClosedDate;OfficialStartDate;MaxFileSize;MinAge;MaxAge;MinGuardianAge;MaxRegistration;MaxVoucher;
+00000000-0000-0000-0000-000000000001;Coolest Projects 2021;2021-04-25;2021-09-25;2021-05-25;2021-06-25;2021-07-25;2021-08-25;100;7;18;16;48;3;
+00000000-0000-0000-0000-000000000002;Event 02;2020-01-01;2020-01-01;2020-01-01;2020-01-01;2020-01-01;2021-08-25;100;7;18;16;48;3;
