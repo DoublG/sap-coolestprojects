@@ -68,7 +68,66 @@ annotate service.Registrations with @(
             Label  : 'Resend Mail',
             Action : 'AdminService.resendMail',
         }
-    ]
+    ],
+    UI.FieldGroup #User : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Value : FirstName,
+                Label : '{@i18n>@FirstName}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : LastName,
+                Label : '{@i18n>@LastName}',
+            }
+        ]
+    },
+    UI.FieldGroup #Project : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Value : Name,
+                Label : '{@i18n>@Name}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Description,
+                Label : '{@i18n>@Description}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : ProjectType,
+                Label : '{@i18n>@ProjectType}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : InternalInfo,
+                Label : '{@i18n>@InternalInfo}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Language.name,
+                Label : '{@i18n>@Language}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : MaxTokens,
+                Label : '{@i18n>@MaxTokens}',
+            },
+        ]
+    },
+    UI.Facets           : [{
+        $Type  : 'UI.ReferenceFacet',
+        Target : '@UI.FieldGroup#User',
+        Label  : 'User'
+    },{
+        $Type  : 'UI.ReferenceFacet',
+        Target : '@UI.FieldGroup#Project',
+        Label  : 'Project'
+    }]
 );
 
 annotate service.Questions with @(
@@ -170,6 +229,16 @@ annotate service.Events with @(
                 $Type : 'UI.DataField',
                 Value : EndDate,
                 Label : '{@i18n>@EndDate}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value :  TotalRegistrations.RemainingRegistrations,
+                Label : '{@i18n>@RemainingRegistrations}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value :  TotalRegistrations.TotalRegistrations,
+                Label : '{@i18n>@TotalRegistrations}',
             }
         ]
     },

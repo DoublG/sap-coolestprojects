@@ -30,7 +30,24 @@ entity Events {
                                      on Registrations.Event = $self;
         Tshirts                : Association to many Tshirts
                                      on Tshirts.Event = $self;
+
+        TotalRegistrations     : Association to one TotalRegistrations
+                                     on TotalRegistrations.ID = ID;
 }
+
+@readonly
+entity TotalRegistrations as
+    select from Registrations {
+        key Registrations.Event.ID,
+        count(
+            *
+        )                      as TotalRegistrations,
+        Registrations.Event.MaxRegistration - count(
+            *
+        )                      as RemainingRegistrations
+    }
+    group by
+        Registrations.Event.ID;
 
 entity Tshirts {
     key ID    : UUID;
@@ -101,7 +118,6 @@ entity Participations {
         Project     : Association to Projects;
         Participant : Association to Users;
 }
-
 
 
 entity Questions {
