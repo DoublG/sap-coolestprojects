@@ -44,12 +44,12 @@ annotate service.Tshirts with @(
 );
 
 annotate service.Registrations with @(
-    UI.LineItem       : [{
+    UI.LineItem            : [{
         $Type : 'UI.DataField',
         Value : FirstName,
         Label : '{@i18n>@Name}',
     }],
-    UI.HeaderInfo     : {
+    UI.HeaderInfo          : {
         TypeName       : 'Registration',
         TypeNamePlural : 'Registrations',
         Title          : {
@@ -57,7 +57,7 @@ annotate service.Registrations with @(
             Value : FirstName
         },
     },
-    UI.Identification : [
+    UI.Identification      : [
         {
             $Type  : 'UI.DataFieldForAction',
             Label  : 'Create User',
@@ -69,7 +69,7 @@ annotate service.Registrations with @(
             Action : 'AdminService.resendMail',
         }
     ],
-    UI.FieldGroup #User : {
+    UI.FieldGroup #User    : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -119,15 +119,18 @@ annotate service.Registrations with @(
             },
         ]
     },
-    UI.Facets           : [{
-        $Type  : 'UI.ReferenceFacet',
-        Target : '@UI.FieldGroup#User',
-        Label  : 'User'
-    },{
-        $Type  : 'UI.ReferenceFacet',
-        Target : '@UI.FieldGroup#Project',
-        Label  : 'Project'
-    }]
+    UI.Facets              : [
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#User',
+            Label  : 'User'
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#Project',
+            Label  : 'Project'
+        }
+    ]
 );
 
 annotate service.Questions with @(
@@ -191,7 +194,7 @@ annotate service.Questions with @(
 
 
 annotate service.Events with @(
-    UI.LineItem           : [
+    UI.LineItem                             : [
         {
             $Type : 'UI.DataField',
             Label : 'Title',
@@ -209,7 +212,7 @@ annotate service.Events with @(
         }
     ],
 
-    UI.HeaderInfo         : {
+    UI.HeaderInfo                           : {
         TypeName       : 'Event',
         TypeNamePlural : 'Events',
         Title          : {
@@ -217,7 +220,26 @@ annotate service.Events with @(
             Value : Title
         },
     },
-    UI.FieldGroup #Header : {
+    UI.DataPoint #Totals                    : {
+        Value        : TotalRegistrations.TotalRegistrations,
+        Title        : '{@i18n>@Total}',
+        Description  : 'Totals',
+        TargetValue  : TotalRegistrations.RemainingRegistrations,
+        MinimumValue : 0,
+        MaximumValue : MaxRegistration,
+    },
+    UI.Chart #Totals : {
+        $Type             : 'UI.ChartDefinitionType',
+        Title             : '{@i18n>@PercentageFilled}',
+        ChartType         : #Donut,
+        Measures          : [TotalRegistrations.TotalRegistrations,],
+        MeasureAttributes : [{
+            $Type     : 'UI.ChartMeasureAttributeType',
+            Measure   : TotalRegistrations.TotalRegistrations,
+            DataPoint : '@UI.DataPoint#Totals'
+        }]
+    },
+    UI.FieldGroup #Header                   : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -232,18 +254,18 @@ annotate service.Events with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value :  TotalRegistrations.RemainingRegistrations,
+                Value : TotalRegistrations.RemainingRegistrations,
                 Label : '{@i18n>@RemainingRegistrations}',
             },
             {
                 $Type : 'UI.DataField',
-                Value :  TotalRegistrations.TotalRegistrations,
+                Value : TotalRegistrations.TotalRegistrations,
                 Label : '{@i18n>@TotalRegistrations}',
             }
         ]
     },
 
-    UI.FieldGroup #Dates  : {
+    UI.FieldGroup #Dates                    : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -278,7 +300,7 @@ annotate service.Events with @(
             }
         ],
     },
-    UI.FieldGroup #Main   : {
+    UI.FieldGroup #Main                     : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -318,7 +340,7 @@ annotate service.Events with @(
             }
         ],
     },
-    UI.Facets             : [
+    UI.Facets                               : [
         {
             $Type  : 'UI.ReferenceFacet',
             ID     : 'GeneratedFacet2',
@@ -359,12 +381,17 @@ annotate service.Events with @(
             ]
         }
     ],
-    UI.HeaderFacets       : [{
-        $Type  : 'UI.ReferenceFacet',
-        ID     : 'GeneratedFacet3',
-        Target : '@UI.FieldGroup#Header'
-    }],
-    UI.Identification     : [
+    UI.HeaderFacets                         : [
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#Header'
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : '@UI.Chart#Totals'
+        }
+    ],
+    UI.Identification                       : [
         {
             $Type  : 'UI.DataFieldForAction',
             Label  : 'Open Event',

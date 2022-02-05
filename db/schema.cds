@@ -13,7 +13,7 @@ entity Events {
         MinAge                 : Integer;
         MaxAge                 : Integer;
         MinGuardianAge         : Integer;
-        MaxRegistration        : Integer;
+        MaxRegistration        : Decimal;
         MaxVoucher             : Integer;
         BeginDate              : Date;
         EndDate                : Date;

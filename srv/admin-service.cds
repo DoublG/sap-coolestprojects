@@ -3,7 +3,7 @@ using {sap.common as sap} from '@sap/cds/common';
 
 service AdminService @(requires : 'admin') {
 
-  entity TotalRegistrations as projection on my.TotalRegistrations { key ID, TotalRegistrations : Integer, RemainingRegistrations: Integer };
+  entity TotalRegistrations as projection on my.TotalRegistrations { key ID, TotalRegistrations : Decimal, RemainingRegistrations: Decimal };
 
   entity Events             as select from my.Events {
     *,
