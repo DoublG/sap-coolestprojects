@@ -31,35 +31,87 @@ entity Events {
         Tshirts                : Association to many Tshirts
                                      on Tshirts.Event = $self;
 
+        TotalUsers             : Association to one TotalUsers
+                                     on TotalUsers.EventId = ID;
+
         TotalRegistrations     : Association to one TotalRegistrations
                                      on TotalRegistrations.ID = ID;
+        DistinctSex            : Association to many DistinctSex
+                                     on DistinctSex.EventId = ID;
+        DistinctTshirt         : Association to many DistinctTshirt
+                                     on DistinctTshirt.ID = ID;
+
+        Sex                    : Association to many Sex
+                                     on Sex.Event = $self
+}
+
+entity Sex {
+    key Event : Association to Events;
+    key ID    : UUID;
+        name  : localized String;
 }
 
 @readonly
 entity TotalRegistrations as
     select from Registrations {
         key Registrations.Event.ID,
-        count(
-            *
-        )                      as TotalRegistrations,
-        Registrations.Event.MaxRegistration - count(
-            *
-        )                      as RemainingRegistrations
+            count(
+                *
+            ) as TotalRegistrations,
+            Registrations.Event.MaxRegistration - count(
+                *
+            ) as RemainingRegistrations
     }
     group by
         Registrations.Event.ID;
+
+@readonly
+entity TotalUsers         as
+    select from Users {
+        key Users.Event.ID as EventId,
+            count(
+                *
+            )              as TotalUsers
+    }
+    group by
+        Users.Event.ID;
+
+@readonly
+entity DistinctSex        as
+    select from Sex
+    left join Users
+        on  Sex.Event = Users.Event
+        and Sex.ID    = Users.Sex.ID
+    {
+        key Sex.Event.ID as EventId,
+        key Sex.ID,
+            count(
+                Users.ID
+            )            as Total
+    }
+    group by
+        Sex.Event.ID,
+        Sex.ID;
+
+@readonly
+entity DistinctTshirt     as
+    select from Users {
+        key Users.Event.ID,
+        key Users.Tshirt,
+            count(
+                *
+            ) as TotalTshirt
+    }
+    group by
+        Users.Event,
+        Users.Tshirt;
+
 
 entity Tshirts {
     key ID    : UUID;
         Name  : localized String;
         Grp   : String;
         Event : Association to Events;
-}
-
-type Sex : String enum {
-    Male;
-    Female;
-    X
 }
 
 type UserFields {
@@ -73,7 +125,7 @@ type UserFields {
     HouseNumber        : String;
     BoxNumber          : String;
     Email              : String;
-    Sex                : Sex;
+    Sex                : Association to Sex;
     BirthMonth         : Date;
     Via                : String;
     MedicalInformation : String;

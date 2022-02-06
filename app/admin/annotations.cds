@@ -194,7 +194,7 @@ annotate service.Questions with @(
 
 
 annotate service.Events with @(
-    UI.LineItem                             : [
+    UI.LineItem                  : [
         {
             $Type : 'UI.DataField',
             Label : 'Title',
@@ -212,7 +212,7 @@ annotate service.Events with @(
         }
     ],
 
-    UI.HeaderInfo                           : {
+    UI.HeaderInfo                : {
         TypeName       : 'Event',
         TypeNamePlural : 'Events',
         Title          : {
@@ -220,26 +220,38 @@ annotate service.Events with @(
             Value : Title
         },
     },
-    UI.DataPoint #Totals                    : {
+    UI.DataPoint #Totals         : {
         Value        : TotalRegistrations.TotalRegistrations,
         Title        : '{@i18n>@Total}',
         Description  : 'Totals',
         TargetValue  : TotalRegistrations.RemainingRegistrations,
-        MinimumValue : 0,
         MaximumValue : MaxRegistration,
     },
-    UI.Chart #Totals : {
+    UI.Chart #Totals             : {
         $Type             : 'UI.ChartDefinitionType',
         Title             : '{@i18n>@PercentageFilled}',
         ChartType         : #Donut,
-        Measures          : [TotalRegistrations.TotalRegistrations,],
+        Measures          : [TotalRegistrations.TotalRegistrations, ],
         MeasureAttributes : [{
             $Type     : 'UI.ChartMeasureAttributeType',
             Measure   : TotalRegistrations.TotalRegistrations,
             DataPoint : '@UI.DataPoint#Totals'
         }]
     },
-    UI.FieldGroup #Header                   : {
+    UI.DataPoint #ComparisonPath : {
+        Value       : TotalRegistrations.TotalRegistrations
+    },
+    UI.Chart #DistinctSex        : {
+        $Type             : 'UI.ChartDefinitionType',
+        Title             : 'Sex Distribution',
+        ChartType         : #Bar,
+        Dimensions        : [Title,],
+        MeasureAttributes : [{
+            $Type     : 'UI.ChartMeasureAttributeType',
+            DataPoint : '@UI.DataPoint#ComparisonPath'
+        }]
+    },
+    UI.FieldGroup #Header        : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -265,7 +277,7 @@ annotate service.Events with @(
         ]
     },
 
-    UI.FieldGroup #Dates                    : {
+    UI.FieldGroup #Dates         : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -300,7 +312,7 @@ annotate service.Events with @(
             }
         ],
     },
-    UI.FieldGroup #Main                     : {
+    UI.FieldGroup #Main          : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -340,7 +352,7 @@ annotate service.Events with @(
             }
         ],
     },
-    UI.Facets                               : [
+    UI.Facets                    : [
         {
             $Type  : 'UI.ReferenceFacet',
             ID     : 'GeneratedFacet2',
@@ -381,7 +393,7 @@ annotate service.Events with @(
             ]
         }
     ],
-    UI.HeaderFacets                         : [
+    UI.HeaderFacets              : [
         {
             $Type  : 'UI.ReferenceFacet',
             Target : '@UI.FieldGroup#Header'
@@ -389,9 +401,13 @@ annotate service.Events with @(
         {
             $Type  : 'UI.ReferenceFacet',
             Target : '@UI.Chart#Totals'
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : '@UI.Chart#DistinctSex'
         }
     ],
-    UI.Identification                       : [
+    UI.Identification            : [
         {
             $Type  : 'UI.DataFieldForAction',
             Label  : 'Open Event',
