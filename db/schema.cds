@@ -103,15 +103,14 @@ entity DistinctTshirt     as
     {
         key Tshirts.Event.ID as EventId,
         key Tshirts.ID,
-            Tshirt.Name,
+            Tshirts.Name,
             count(
-                *
+                Users.ID
             )            as Total
     }
-    where Users.Tshirt.ID is not null
     group by
-        Users.Event,
-        Users.Tshirt;
+        Tshirts.Event.ID,
+        Tshirts.ID;
 
 
 entity Tshirts {
