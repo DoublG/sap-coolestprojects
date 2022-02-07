@@ -4,8 +4,8 @@ using {sap.common as sap} from '@sap/cds/common';
 service AdminService @(requires : 'admin') {
 
   entity TotalRegistrations as projection on my.TotalRegistrations { key ID, TotalRegistrations : Decimal, RemainingRegistrations: Decimal };
-  entity DistinctSex as projection on my.DistinctSex { key EventId, key ID : String, Total: Integer };
-  entity DistinctTshirt as projection on my.DistinctTshirt { key ID, key Tshirt : String, TotalTshirt: Decimal };
+  entity DistinctSex as projection on my.DistinctSex { key EventId, key ID : String, Name: String, Total: Decimal };
+  entity DistinctTshirt as projection on my.DistinctTshirt { key EventId, key ID, Name: String, Total: Decimal };
   entity TotalUsers as projection on my.TotalUsers { key EventId, TotalUsers: Decimal };
   entity Sex as projection on my.Sex { * };
 

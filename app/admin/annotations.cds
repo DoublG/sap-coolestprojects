@@ -16,6 +16,39 @@ annotate service.Users with @(
     },
 );
 
+annotate service.DistinctSex with @(
+    UI.DataPoint #ComparisonPath : {
+        Value       : Total
+    },
+    UI.Chart #DistinctSex        : {
+        $Type             : 'UI.ChartDefinitionType',
+        Title             : 'Sex Distribution',
+        ChartType         : #Bar,
+        Dimensions        : [Name,],
+        MeasureAttributes : [{
+            $Type     : 'UI.ChartMeasureAttributeType',
+            DataPoint : '@UI.DataPoint#ComparisonPath'
+        }]
+    }
+);
+
+annotate service.DistinctTshirt with @(
+    UI.DataPoint #ComparisonPath : {
+        Value       : Total
+    },
+    UI.Chart #DistinctTshirt        : {
+        $Type             : 'UI.ChartDefinitionType',
+        Title             : 'Tshirt Distribution',
+        ChartType         : #Bar,
+        Dimensions        : [Name,],
+        MeasureAttributes : [{
+            $Type     : 'UI.ChartMeasureAttributeType',
+            DataPoint : '@UI.DataPoint#ComparisonPath'
+        }]
+    }
+);
+
+
 annotate service.Tshirts with @(
     UI.PresentationVariant : {
         GroupBy        : [Grp],
@@ -238,19 +271,6 @@ annotate service.Events with @(
             DataPoint : '@UI.DataPoint#Totals'
         }]
     },
-    UI.DataPoint #ComparisonPath : {
-        Value       : TotalRegistrations.TotalRegistrations
-    },
-    UI.Chart #DistinctSex        : {
-        $Type             : 'UI.ChartDefinitionType',
-        Title             : 'Sex Distribution',
-        ChartType         : #Bar,
-        Dimensions        : [Title,],
-        MeasureAttributes : [{
-            $Type     : 'UI.ChartMeasureAttributeType',
-            DataPoint : '@UI.DataPoint#ComparisonPath'
-        }]
-    },
     UI.FieldGroup #Header        : {
         $Type : 'UI.FieldGroupType',
         Data  : [
@@ -404,7 +424,11 @@ annotate service.Events with @(
         },
         {
             $Type  : 'UI.ReferenceFacet',
-            Target : '@UI.Chart#DistinctSex'
+            Target : 'DistinctSex/@UI.Chart#DistinctSex'
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : 'DistinctTshirt/@UI.Chart#DistinctTshirt'
         }
     ],
     UI.Identification            : [

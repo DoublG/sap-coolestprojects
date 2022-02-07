@@ -48,7 +48,7 @@ entity Events {
 entity Sex {
     key Event : Association to Events;
     key ID    : UUID;
-        name  : localized String;
+        Name  : localized String;
 }
 
 @readonly
@@ -85,6 +85,7 @@ entity DistinctSex        as
     {
         key Sex.Event.ID as EventId,
         key Sex.ID,
+            Sex.Name,
             count(
                 Users.ID
             )            as Total
@@ -95,13 +96,19 @@ entity DistinctSex        as
 
 @readonly
 entity DistinctTshirt     as
-    select from Users {
-        key Users.Event.ID,
-        key Users.Tshirt,
+    select from Tshirts
+    left join Users
+        on  Tshirts.Event = Users.Event
+        and Tshirts.ID    = Users.Tshirt.ID
+    {
+        key Tshirts.Event.ID as EventId,
+        key Tshirts.ID,
+            Tshirt.Name,
             count(
                 *
-            ) as TotalTshirt
+            )            as Total
     }
+    where Users.Tshirt.ID is not null
     group by
         Users.Event,
         Users.Tshirt;
