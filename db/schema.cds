@@ -39,7 +39,7 @@ entity Events {
         DistinctSex            : Association to many DistinctSex
                                      on DistinctSex.EventId = ID;
         DistinctTshirt         : Association to many DistinctTshirt
-                                     on DistinctTshirt.ID = ID;
+                                     on DistinctTshirt.EventId = ID;
 
         Sex                    : Association to many Sex
                                      on Sex.Event = $self
