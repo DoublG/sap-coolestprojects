@@ -119,6 +119,11 @@
                     "pattern": "Events({key})/Tshirts({key2}):?query:",
                     "name": "TshirtsObjectPage",
                     "target": "TshirtsObjectPage"
+                },
+                {
+                    "pattern": "Events({key})/Sex({key2}):?query:",
+                    "name": "SexObjectPage",
+                    "target": "SexObjectPage"
                 }
             ],
             "targets": {
@@ -168,6 +173,11 @@
                                     "detail": {
                                         "route": "UsersObjectPage"
                                     }
+                                },
+                                "Sex": {
+                                    "detail": {
+                                        "route": "SexObjectPage"
+                                    }
                                 }
                             }
                         }
@@ -210,6 +220,16 @@
                     "options": {
                         "settings": {
                             "entitySet": "Users"
+                        }
+                    }
+                },
+                "SexObjectPage": {
+                    "type": "Component",
+                    "id": "SexObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Sex"
                         }
                     }
                 }

@@ -76,6 +76,24 @@ annotate service.Tshirts with @(
     },
 );
 
+annotate service.Sex with @(
+    UI.LineItem            : [
+        {
+            $Type : 'UI.DataField',
+            Value : Name,
+            Label : '{@i18n>@Name}',
+        }
+    ],
+    UI.HeaderInfo          : {
+        TypeName       : 'Sex',
+        TypeNamePlural : 'Sex',
+        Title          : {
+            $Type : 'UI.DataField',
+            Value : Name
+        },
+    },
+);
+
 annotate service.Registrations with @(
     UI.LineItem            : [{
         $Type : 'UI.DataField',
@@ -409,6 +427,11 @@ annotate service.Events with @(
                     $Type  : 'UI.ReferenceFacet',
                     ID     : 'GeneratedFacet6',
                     Target : 'Registrations/@UI.LineItem',
+                },
+                {
+                    $Type  : 'UI.ReferenceFacet',
+                    ID     : 'GeneratedFacet6',
+                    Target : 'Sex/@UI.LineItem',
                 }
             ]
         }

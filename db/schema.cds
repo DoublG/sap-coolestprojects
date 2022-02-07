@@ -35,7 +35,7 @@ entity Events {
                                      on TotalUsers.EventId = ID;
 
         TotalRegistrations     : Association to one TotalRegistrations
-                                     on TotalRegistrations.ID = ID;
+                                     on TotalRegistrations.EventId = ID;
         DistinctSex            : Association to many DistinctSex
                                      on DistinctSex.EventId = ID;
         DistinctTshirt         : Association to many DistinctTshirt
@@ -53,8 +53,8 @@ entity Sex {
 
 @readonly
 entity TotalRegistrations as
-    select from Registrations {
-        key Registrations.Event.ID,
+    select from Registrations { 
+        key Registrations.Event.ID as EventId,
             count(
                 *
             ) as TotalRegistrations,
