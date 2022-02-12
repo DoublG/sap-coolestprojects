@@ -42,7 +42,10 @@ entity Events {
                                      on DistinctTshirt.EventId = ID;
 
         Sex                    : Association to many Sex
-                                     on Sex.Event = $self
+                                     on Sex.Event = $self;
+
+        Calculated             : Association to one Calculated
+                                     on Calculated.EventId = ID;
 }
 
 entity Sex {
@@ -52,17 +55,26 @@ entity Sex {
 }
 
 @readonly
+entity Calculated         as
+    select from Events {
+        key Events.ID                       as EventId,
+        0 as DaysRemaining
+            //DAYS_BETWEEN( Events.OfficialStartDate, $now ) as DaysRemaining
+    };
+
+@readonly
 entity TotalRegistrations as
-    select from Registrations { 
+    select from Registrations {
         key Registrations.Event.ID as EventId,
             count(
                 *
-            ) as TotalRegistrations,
+            )                      as TotalRegistrations,
             Registrations.Event.MaxRegistration - count(
                 *
-            ) as RemainingRegistrations
+            )                      as RemainingRegistrations
     }
     group by
+        Registrations.Event.MaxRegistration,
         Registrations.Event.ID;
 
 @readonly
@@ -92,6 +104,7 @@ entity DistinctSex        as
     }
     group by
         Sex.Event.ID,
+        Sex.Name,
         Sex.ID;
 
 @readonly
@@ -106,10 +119,11 @@ entity DistinctTshirt     as
             Tshirts.Name,
             count(
                 Users.ID
-            )            as Total
+            )                as Total
     }
     group by
         Tshirts.Event.ID,
+        Tshirts.Name,
         Tshirts.ID;
 
 
@@ -154,7 +168,7 @@ entity Answers {
     key Question : Association to Questions;
 }
 
-entity Users : UserFields {
+entity Users : UserFields, managed {
     key ID          : UUID;
         Project     : Association to Projects
                           on Project.Owner = $self;
@@ -162,7 +176,6 @@ entity Users : UserFields {
                           on Participant.Participant = $self;
         Event       : Association to Events;
         Answers     : Composition of Answers;
-
 }
 
 entity Projects : ProjectFields {
@@ -188,7 +201,7 @@ entity Questions {
         Event          : Association to Events;
 }
 
-entity Registrations : UserFields, ProjectFields {
+entity Registrations : UserFields, ProjectFields, managed {
     key ID      : UUID;
         Event   : Association to Events;
         Answers : Composition of Answers;

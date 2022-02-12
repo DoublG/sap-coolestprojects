@@ -13,5 +13,23 @@
     "csv (semicolon)",
     "tsv",
     "tab"
+  ],
+  "sqltools.connections": [
+    {
+      "connectionTimeout": 30,
+      "hanaOptions": {
+        "encrypt": true,
+        "sslValidateCertificate": true,
+        "sslCryptoProvider": "openssl"
+      },
+      "previewLimit": 50,
+      "driver": "SAPHana",
+      "server": "59ee171e-222a-4273-a753-fcb6aec565d6.hana.trial-eu10.hanacloud.ondemand.com",
+      "database": "E87F8A37830A4179BDE9A58CED538EFA",
+      "port": 443,
+      "username": "E87F8A37830A4179BDE9A58CED538EFA_B70OSIXWO1LPWVX7E3YWS4QC0_RT",
+      "password": "Gz13YQ9lFIBcUFcsfVfzRuqOQUaFEpa_-ds9BPXAzrgg-pBL5VvhQH88ZHjdU21fXvb-H5LAvKOybOF8sKX9mWBj_uD1E6b.OU82B09Q6d1F226LV7ESDadWZ7WEN8rf",
+      "name": "test"
+    }
   ]
 }

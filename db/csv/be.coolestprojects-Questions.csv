@@ -1,5 +1,5 @@
-Event_ID;Name;Description;PositiveAnswer;NegativeAnswer;Mandatory;
-00000000-0000-0000-0000-000000000001;Agreed to Photo;Is Coderdojo allowed to take photos/videos during the event?;Yes to photo;No to photo;false;
-00000000-0000-0000-0000-000000000001;Agreed to Contact;Can Coderdojo contact you in the future?;Yes to contact;No to contact;false;
-00000000-0000-0000-0000-000000000001;Approved;Be sure to read our rules. Do you agree?;Yes;No;true;
-00000000-0000-0000-0000-000000000001;CliniMaker;Could your project qualify as a CliniMakers project? In other words: do you plan to make something for a child that is ill or has a disability and you (preferably) know this person.;Yes;No;false;
+ID;Event_ID;Name;Description;PositiveAnswer;NegativeAnswer;Mandatory;
+1d9ecaf4-6cab-4b8a-aa8b-49b3cf757d6e;c1b2b0c5-a4f8-4e4d-ade2-94ccbfd03530;Agreed to Photo;Is Coderdojo allowed to take photos/videos during the event?;Yes to photo;No to photo;false;
+2b4b745b-41cd-4a17-a751-0b549d467db6;c1b2b0c5-a4f8-4e4d-ade2-94ccbfd03530;Agreed to Contact;Can Coderdojo contact you in the future?;Yes to contact;No to contact;false;
+7bbe9f77-1fec-40f8-9c8e-6cd44107fb0c;c1b2b0c5-a4f8-4e4d-ade2-94ccbfd03530;Approved;Be sure to read our rules. Do you agree?;Yes;No;true;
+0c158388-b3e3-49c0-b3dd-dfed031431e5;c1b2b0c5-a4f8-4e4d-ade2-94ccbfd03530;CliniMaker;Could your project qualify as a CliniMakers project? In other words: do you plan to make something for a child that is ill or has a disability and you (preferably) know this person.;Yes;No;false;

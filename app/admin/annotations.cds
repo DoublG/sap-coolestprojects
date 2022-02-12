@@ -260,6 +260,11 @@ annotate service.Events with @(
             $Type : 'UI.DataField',
             Label : 'EndDate',
             Value : EndDate,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'DaysRemaining',
+            Value : Calculated.DaysRemaining,
         }
     ],
 
@@ -410,27 +415,22 @@ annotate service.Events with @(
             Facets : [
                 {
                     $Type  : 'UI.ReferenceFacet',
-                    ID     : 'GeneratedFacet4',
                     Target : 'Questions/@UI.LineItem',
                 },
                 {
                     $Type  : 'UI.ReferenceFacet',
-                    ID     : 'GeneratedFacet7',
                     Target : 'Tshirts/@UI.LineItem',
                 },
                 {
                     $Type  : 'UI.ReferenceFacet',
-                    ID     : 'GeneratedFacet5',
                     Target : 'Users/@UI.LineItem',
                 },
                 {
                     $Type  : 'UI.ReferenceFacet',
-                    ID     : 'GeneratedFacet6',
                     Target : 'Registrations/@UI.LineItem',
                 },
                 {
                     $Type  : 'UI.ReferenceFacet',
-                    ID     : 'GeneratedFacet6',
                     Target : 'Sex/@UI.LineItem',
                 }
             ]

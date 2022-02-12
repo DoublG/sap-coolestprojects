@@ -1,25 +1,25 @@
-# Getting Started
+# Coolestprojects SAP Version
 
-Welcome to your new project.
+This project is a variant of the coolesprojects website.
 
-It contains these folders and files, following our recommended project layout:
+I'm using this project to learn the various capabilities of Fiori Elements & test cloud infrastucture capabilities.
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+## Things to learn
 
+* CAP capabilities & way of working
+* Annotations spielerei (how to mess around with UI5 features)
+  * XML preprocessor
+  * Custom controls
+  * Backend validation & UI adaptations (hide fields, mandatory, ...)
+* Non SAP frontend (Vue)
+* Analytical apps
+* Working with streaming data
+* Overview pages
+* Security
+* Automate tooling & testing
 
-## Next Steps
+## Deployment steps
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
-
-
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+    cds build --production
+    cf cspush
+    cf logs sap-coolestprojects-db-deployer --recent
