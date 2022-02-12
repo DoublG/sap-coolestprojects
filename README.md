@@ -23,3 +23,10 @@ I'm using this project to learn the various capabilities of Fiori Elements & tes
     cds build --production
     cf cspush
     cf logs sap-coolestprojects-db-deployer --recent
+
+## Gotchas
+
+* generate guids via uuidgen
+* fill in GUIDs in CSV files
+* mind the inconsistencies between sqllite & hana CDS syntax
+* Check the location of your annotations for graphs, otherwise associations are used incorrectly (distribution graph was using the events instead of thirts)
